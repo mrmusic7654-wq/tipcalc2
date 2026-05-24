@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TipCalc2</string>
+    <string name="bill_amount_label">Bill Amount</string>
+    <string name="tip_percentage_label">Tip Percentage: %1$d%%</string>
+    <string name="tip_amount_display">Tip Amount: %1$s</string>
+    <string name="total_amount_display">Total Amount: %1$s</string>
+</resources>
