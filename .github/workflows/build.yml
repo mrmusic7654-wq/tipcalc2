@@ -1,0 +1,20 @@
+name: Build tipcalc2
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Gradle
+        run: |
+          if [ ! -f "gradlew" ]; then gradle wrapper --gradle-version 8.4; fi
+          chmod +x gradlew
+      - uses: actions/setup-java@v4
+        with: {java-version: '17', distribution: 'temurin'}
+      - uses: gradle/actions/setup-gradle@v3
+      - run: ./gradlew assembleDebug --no-daemon
+        env:
+          GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4g"
+      - uses: actions/upload-artifact@v4
+        with: {name: tipcalc2-debug, path: app/build/outputs/apk/debug/app-debug.apk}
